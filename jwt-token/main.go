@@ -1,15 +1,19 @@
 package main
 
 import (
-	"main/database"
-	"main/routes"
+	"jwt-token/repositories"
+	"jwt-token/routes"
+	"log"
 
 	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
-	database.Connect()
+	repositories.Connect()
 	app := fiber.New()
+
 	routes.Setup(app)
-	app.Listen(":8000")
+
+	log.Fatal(app.Listen(":8000"))
+
 }
